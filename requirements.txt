@@ -1,0 +1,10 @@
+tensorflow>=2.10
+tensorflow-datasets
+numpy
+matplotlib
+pillow
+mlflow     # optional: for experiment tracking later
+dvc        # optional: data versioning later
+scikit-learn
+pandas
+seaborn
