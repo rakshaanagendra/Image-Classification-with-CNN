@@ -1,3 +1,19 @@
-src/__pycache__
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual env
 .venv/
+
+# Data
 data/
+
+# Models and checkpoints
+checkpoints/
+saved_models/
+*.keras
+*.h5
+
+# IDE
+.vscode/
