@@ -9,7 +9,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
@@ -23,7 +22,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest
+        pip install pytest pillow
+
+    - name: Generate small test dataset
+      run: python tests/generate_test_data.py
 
     - name: Run smoketests
-      run: pytest smoketest.py -v
+      run: pytest tests/smoketest.py -q
