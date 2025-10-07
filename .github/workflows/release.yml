@@ -3,7 +3,7 @@ name: Create Release
 on:
   push:
     tags:
-      - "v*.*.*"   # Triggers when you push a version tag like v1.0.0
+      - "v*.*.*"
 
 jobs:
   release:
@@ -13,9 +13,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload Release Assets
+      - name: Read metrics
+        id: metrics
+        run: |
+          if [ -f metrics.json ]; then
+            TRAIN_ACC=$(jq -r '.train_accuracy' metrics.json)
+            VAL_ACC=$(jq -r '.val_accuracy' metrics.json)
+            TRAIN_LOSS=$(jq -r '.train_loss' metrics.json)
+            VAL_LOSS=$(jq -r '.val_loss' metrics.json)
+            echo "release_body=🧠 Model Performance%0A✅ Train Accuracy: ${TRAIN_ACC}%0A✅ Val Accuracy: ${VAL_ACC}%0A📉 Train Loss: ${TRAIN_LOSS}%0A📉 Val Loss: ${VAL_LOSS}" >> $GITHUB_OUTPUT
+          else
+            echo "release_body=⚠️ No metrics.json found." >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
+          body: ${{ steps.metrics.outputs.release_body }}
           files: |
             saved_models/pet_classifier.keras
             best_model.h5
