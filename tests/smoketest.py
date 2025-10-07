@@ -2,10 +2,9 @@
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-import sys
+import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))  
 
-import os
 from src.data import get_datasets
 from src.model import build_model
 import pytest
