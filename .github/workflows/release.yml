@@ -24,7 +24,15 @@ jobs:
             VAL_ACC=$(jq -r '.val_accuracy' metrics.json)
             TRAIN_LOSS=$(jq -r '.train_loss' metrics.json)
             VAL_LOSS=$(jq -r '.val_loss' metrics.json)
-            echo "release_body=🧠 Model Performance%0A✅ Train Accuracy: ${TRAIN_ACC}%0A✅ Val Accuracy: ${VAL_ACC}%0A📉 Train Loss: ${TRAIN_LOSS}%0A📉 Val Loss: ${VAL_LOSS}" >> $GITHUB_OUTPUT
+            {
+              echo "release_body<<EOF"
+              echo "🧠 Model Performance"
+              echo "✅ Train Accuracy: ${TRAIN_ACC}"
+              echo "✅ Val Accuracy: ${VAL_ACC}"
+              echo "📉 Train Loss: ${TRAIN_LOSS}"
+              echo "📉 Val Loss: ${VAL_LOSS}"
+              echo "EOF"
+            } >> $GITHUB_OUTPUT
           else
             echo "release_body=⚠️ No metrics.json found." >> $GITHUB_OUTPUT
           fi
