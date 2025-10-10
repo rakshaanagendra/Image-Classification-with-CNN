@@ -7,13 +7,11 @@ The model classifies images of dogs and cats from the Oxford-IIIT Pet Dataset us
 
 ## 🚀 Features
 
-✅ Deep learning model using TensorFlow (EfficientNetB0)
-✅ Web interface with Streamlit
-✅ Experiment tracking with MLflow (optional)
-✅ CI/CD automation using GitHub Actions
+✅ Deep learning model using TensorFlow (EfficientNetB0)<br>
+✅ Web interface built with Streamlit<br>
+✅ Experiment tracking with MLflow (optional)<br>
+✅ CI/CD automation using GitHub Actions<br>
 ✅ Dockerized for easy local or cloud deployment
-<br/><br/>
-
 
 ## 📂 Project Structure
 <pre>
